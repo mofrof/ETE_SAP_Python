@@ -1,7 +1,7 @@
 a = []
 d = []
 
-def h():
+def init():
     def j(k):
             if k == 1:
                 print(len(a))
@@ -45,18 +45,18 @@ def h():
             else:
                 b = False
 
-    b = True
-    while b:
+    saidaDoMenuPrincipal = True
+    while saidaDoMenuPrincipal:
         print("================Listas de Filmes e Series===================")
         print("1 - adicionar nova serie a lista")
         print("2 - Ver lista geral")
         print("3 - sair")
-        c = int(input("Digite sua opção: "))
-        if c == 1 :
+        opcaoDoUsuario = int(input("Digite sua opção: "))
+        if opcaoDoUsuario == 1 :
             i()
-        elif c == 2 :
+        elif opcaoDoUsuario == 2 :
             k()
         else:
-            b = False
+            saidaDoMenuPrincipal = False
 
-h()
+init()

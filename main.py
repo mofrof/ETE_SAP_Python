@@ -45,8 +45,8 @@ def init():
             else:
                 b = False
 
-    saidaDoMenuPrincipal = True
-    while saidaDoMenuPrincipal:
+    sairDoMenuPrincipal = True
+    while sairDoMenuPrincipal:
         print("================Listas de Filmes e Series===================")
         print("1 - adicionar nova serie a lista")
         print("2 - Ver lista geral")
@@ -57,6 +57,6 @@ def init():
         elif opcaoDoUsuario == 2 :
             k()
         else:
-            saidaDoMenuPrincipal = False
+            sairDoMenuPrincipal = False
 
 init()

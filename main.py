@@ -1,62 +1,75 @@
-a = []
-d = []
+listaDeFilmes = []
+listaDeSeries = []
 
 def init():
-    def j(k):
-            if k == 1:
-                print(len(a))
+    def exibirContagemFilmesESeries(opcaoFilmeOuSerie):
+            if opcaoFilmeOuSerie == 1:
+                print(len(listaDeFilmes))
+            elif opcaoFilmeOuSerie == 2:
+                print(len(listaDeSeries))
             else:
-                print(d.count)
-            
-            print(len(a)+len(d))
-    def i():
-        f = True
-        while f:
+                print("Erro interno, falar com desenvolvedor")
+
+            print("Contagem geral:")
+            print("Filmes:")
+            print(len(listaDeFilmes))
+            print("Series:")
+            print(len(listaDeSeries))
+            print(len(listaDeFilmes) + len(listaDeSeries))
+    def menuAdicionar():
+        repetirMenuPrincipal = True
+        while repetirMenuPrincipal:
             print("================Adicionar===================")
             print("1 - Adicionar Filme")
             print("2 - Adicionar Serie")
             print("3 - sair")
-            e = int(input("Digite sua opção: "))
-            if e == 1:
-                a.append(input("Digite o nome do Filme: "))
-            elif e == 2:
-                d.append(input("Digite o nome do Serie: "))
+            opcaoDoUsuario = int(input("Digite sua opção: "))
+            if opcaoDoUsuario == 1:
+                listaDeFilmes.append(input("Digite o nome do Filme: "))
+            elif opcaoDoUsuario == 2:
+                listaDeSeries.append(input("Digite o nome do Serie: "))
+            elif opcaoDoUsuario == 3:
+                repetirMenuPrincipal = False
             else:
-                f = False
+                print("Opção invalida !!!")
+
             print("Item Adicionado com sucesso")
 
-    def g():
-        print(a + d)
-    def k():
-        l = True
-        while l:
+    def exibirListaGeral():
+        print(listaDeFilmes + listaDeSeries)
+    def menuExibirListas():
+        repetirMenuPrincipal = True
+        while repetirMenuPrincipal:
             print("================Dados dos sistema===================")
             print("1 - Lista Gereal")
-            print("2 - contagem Series")
-            print("3 - contagem Filmes")
+            print("2 - Contagem Series")
+            print("3 - Contagem Filmes")
             print("4 - sair")
-            m = int(input("Digite sua opção: "))
-            if m == 1 :
-                g()
-            elif m == 2 :
-                j(2)
-            elif m == 3 :
-                j(1)
+            opcaoDoUsuario = int(input("Digite sua opção: "))
+            if opcaoDoUsuario == 1 :
+                exibirListaGeral()
+            elif opcaoDoUsuario == 2 :
+                exibirContagemFilmesESeries(2)
+            elif opcaoDoUsuario == 3 :
+                exibirContagemFilmesESeries(1)
             else:
-                b = False
+                repetirMenuPrincipal = False
 
-    sairDoMenuPrincipal = True
-    while sairDoMenuPrincipal:
+    repetirMenuPrincipal = True
+    while repetirMenuPrincipal:
         print("================Listas de Filmes e Series===================")
         print("1 - adicionar nova serie a lista")
         print("2 - Ver lista geral")
         print("3 - sair")
+
         opcaoDoUsuario = int(input("Digite sua opção: "))
         if opcaoDoUsuario == 1 :
-            i()
+            menuAdicionar()
         elif opcaoDoUsuario == 2 :
-            k()
+            menuExibirListas()
+        elif opcaoDoUsuario == 3 :
+            repetirMenuPrincipal = False
         else:
-            sairDoMenuPrincipal = False
+            print("Erro opção invalida !!!")
 
 init()

@@ -7,8 +7,8 @@ class Documentario(ProgramaTV):
         self.__quantEp = quantEp
 
     def exibirDados(self):
-        # super().exibirDados()
-        print("TESTE")
+        super().exibirDados()
+        print(f"Quantidade de epsodios: R$ {self.__quantEp}")
         
     def venderDocumentario(self, valorSugerido):
         if (valorSugerido < 
@@ -17,4 +17,3 @@ class Documentario(ProgramaTV):
             print("Não vendo")
         else:
             self.disponivel = False
-    

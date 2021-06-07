@@ -4,11 +4,14 @@ from Objetos.ProgramaTV import *
 class Serie(ProgramaTV):
 
     def __init__ (self, nome, quantidadeTemporadas,
-    anoLancamento, disponivel,valorDeCompra):
+    anoLancamento,valorDeCompra):
         super().__init__(nome,anoLancamento,valorDeCompra)
         self.__quantidadeTemporadas = quantidadeTemporadas
-        self.__disponivel = disponivel
             
+    def exibirDados(self):
+        super().exibirDados()
+        print(f"Quantidade de temporadas: {self.__quantidadeTemporadas}")
+
     def venderSerie(self, valorSugerido):
         if (valorSugerido < 
         self.__valorDeCompra + 

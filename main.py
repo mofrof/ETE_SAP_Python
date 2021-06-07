@@ -1,77 +1,17 @@
-listaDeFilmes = []
-listaDeSeries = []
+from Objetos.Documentario import *
+from Objetos.Filme import *
+from Objetos.Serie import *
 
-def init():
-    def contadorDeListas(indicacaoDeLista):
-            if indicacaoDeLista == 1:
-                print("Total de Filmes:")
-                print(len(listaDeFilmes))
-            elif indicacaoDeLista == 2:
-                print("Total de Series:")
-                print(len(listaDeSeries))
-            else:
-                print(len(listaDeFilmes)+len(listaDeSeries))
+documentario = Documentario(5,"Alieniginas do pasado", 2010, 555.55)
+filme = Filme("Vingadores",2011,True,1255.55)
+serie = Serie("TWD",8,2007,True,88)
 
-    def menuAdicionar():
-        repetirMenuAdicionar = True
+documentario.exibirDados()
+filme.exibirDados()
+# serie.exibirDados()
 
-        while repetirMenuAdicionar:
-            print("================Adicionar===================")
-            print("1 - Adicionar Filme")
-            print("2 - Adicionar Serie")
-            print("3 - sair")
+# nossoPlaneta.nome = "Nosso planeta"
 
-            opcaoDoUsuarioNoMenuAdicionar = int(input("Digite sua opção: "))
+# print(nossoPlaneta.teste)
 
-            if opcaoDoUsuarioNoMenuAdicionar == 1:
-                listaDeFilmes.append(input("Digite o nome do Filme: "))
-                print("Item Adicionado com sucesso")
-
-            elif opcaoDoUsuarioNoMenuAdicionar == 2:
-                listaDeSeries.append(input("Digite o nome do Serie: "))
-                print("Item Adicionado com sucesso")
-
-            elif opcaoDoUsuarioNoMenuAdicionar == 3:
-                repetirMenuAdicionar = False
-
-            else:
-                print("Opção invalida !!!")
-
-    def exebiListaGeral():
-        print(listaDeFilmes + listaDeSeries)
-
-    def menuLista():
-        repetirMenuLista = True
-        while repetirMenuLista:
-            print("================Dados dos sistema===================")
-            print("1 - Lista Gereal")
-            print("2 - Contagem Series")
-            print("3 - Contagem Filmes")
-            print("4 - Sair")
-            opcaoDoUsuarioNoMenuLista = int(input("Digite sua opção: "))
-            if opcaoDoUsuarioNoMenuLista == 1 :
-                exebiListaGeral()
-            elif opcaoDoUsuarioNoMenuLista == 2 :
-                contadorDeListas(2)
-            elif opcaoDoUsuarioNoMenuLista == 3 :
-                contadorDeListas(1)
-            else:
-                repetirMenuLista = False
-
-    repetirMenuPrincipal = True
-    while repetirMenuPrincipal:
-        print("================Listas de Filmes e Series===================")
-        print("1 - Adicionar nova filme ou serie a lista")
-        print("2 - Ver lista geral")
-        print("3 - sair")
-        opcaoDoUsuarioNoMenuPrincpal = int(input("Digite sua opção: "))
-        if opcaoDoUsuarioNoMenuPrincpal == 1 :
-            menuAdicionar()
-        elif opcaoDoUsuarioNoMenuPrincpal == 2 :
-            menuLista()
-        elif opcaoDoUsuarioNoMenuPrincpal == 3:
-             repetirMenuPrincipal = False
-        else:
-            print("Opção é invalida!!")
-
-init()
+#print(nossoPlaneta.nome)

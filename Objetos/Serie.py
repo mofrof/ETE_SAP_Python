@@ -11,11 +11,3 @@ class Serie(ProgramaTV):
     def exibirDados(self):
         super().exibirDados()
         print(f"Quantidade de temporadas: {self.__quantidadeTemporadas}")
-
-    def venderSerie(self, valorSugerido):
-        if (valorSugerido < 
-        self.__valorDeCompra + 
-        (self.__valorDeCompra * 0.2) ):
-            print("Não vendo")
-        else:
-            self.disponivel = False

@@ -7,19 +7,7 @@ class Filme(ProgramaTV):
             self.__disponivel = disponivel
        
 
-    def venderSerie(self, valorSugerido):
-        if (valorSugerido < 
-        self.__valorDeCompra + 
-        (self.__valorDeCompra * 0.1) ):
-            print("Não vendo")
-        else:
-            self.disponivel = False
-    
-    def venderFilme(self, valorSugerido):
-        if (valorSugerido < 
-        self.__valorDeCompra + 
-        (self.__valorDeCompra * 0.2) ):
-            print("Não vendo")
-        else:
-            self.disponivel = False
+    def exibirDados(self):
+        super().exibirDados()
+        print("eu sou o texto da classe filme")
 

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar</title>
+</head>
+
+<body>
+    <h1>{{titulo}}</h1>
+    <a href="/filmes">Voltar</a>
+    <form action="/filme/cadastrar" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="Nome do filme" required>
+        <label for="anoLancamento">Ano lançamento:</label>
+        <input type="number" name="anoLancamento" id="anoLancamento" required>
+        <label for="valorCompra">Valor de compra</label>
+        <input type="text" name="valorCompra" id="valorCompra" required>
+        <label for="disponivel">Disponivel:</label>
+        <input type="checkbox" name="disponivel" id="disponivel" >
+        <button type="submit">Cadastrar</button>
+    </form>
+</body>
+
+</html>

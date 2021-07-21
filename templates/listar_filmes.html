@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Filmes</title>
+</head>
+
+<body>
+    <h1>{{titulo}}</h1>
+    <a href="/">Voltar</a> <a href="/filme/novo">Cadastrar novo</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Ano Lançamento</th>
+                <th scope="col">Valor compra</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+             {% for filme in listaFilmes %}
+            <tr>
+                <td>{{filme.nome}}</td>
+                <td>{{filme.anoLancamento}}</td>
+                <td>R$ {{filme.valorDeCompra}}</td>
+                <td>
+                    <a href="">Visualizar</a>
+                    <br>
+                    <a href="/filme/alterar?index={{loop.index0}}">Alterar</a>
+                    <br>
+                    <a href="/filme/excluir?index={{loop.index-1}}" >Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

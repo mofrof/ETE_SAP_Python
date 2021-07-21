@@ -1,28 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alterar</title>
-</head>
-
-<body>
-    <h1>{{titulo}}</h1>
-    <a href="/filmes">Voltar</a>
-    <form action="/filme/update" method="POST">
-        <input type="hidden" name="index" id="index" value="{{index}}" >
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" value="{{filme.nome}}" required>
-        <label for="anoLancamento">Ano lançamento:</label>
-        <input type="number" name="anoLancamento" id="anoLancamento" value="{{filme.anoLancamento}}" required>
-        <label for="valorCompra">Valor de compra</label>
-        <input type="text" name="valorCompra" id="valorCompra" value="{{filme.valorDeCompra}}" required>
-        <label for="disponivel">Disponivel:</label>
-        <input type="checkbox" name="disponivel" id="disponivel" {% if filme.disponivel  %} checked {% endif %}>
-        <button type="submit">Alterar</button>
-    </form>
-</body>
-
-</html>
+{% extends "comum/template.html" %}
+{% block conteudo %}
+<h1 class="text-center">{{titulo}}</h1>
+<form action="/filme/update" method="POST" class="needs-validation">
+    <input type="hidden" name="index" id="index" value="{{index}}">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="nome">Título</label>
+            <input type="text" class="form-control" name="nome" id="nome" value="{{filme.nome}}" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="anoLancamento">Ano lançamento</label>
+            <input type="number" class="form-control" name="anoLancamento" id="anoLancamento" value="{{filme.anoLancamento}}" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="valorCompra">Valor de compra</label>
+            <input type="text" class="form-control" name="valorCompra" id="valorCompra" value="{{filme.valorDeCompra}}" required>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="disponivel">Disponivel</label>
+            <input type="checkbox" class="fform-check-input" name="disponivel" id="disponivel" {% if filme.disponivel %}
+                checked {% endif %}>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Alterar</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,18 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Principal</title>
-</head>
-
-<body>
-    <h1>{{titulo}}</h1>
-    <a href="/filmes"> Lista de Filmes</a>
-    <a href="/series"> Lista de Series</a>
-    <a href="/documentarios"> Lista de Documentarios</a>
-</body>
-
-</html>
+{% extends "comum/template.html" %}
+{% block conteudo %}
+<h1 class="text-center">{{titulo}}</h1>
+<hr>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-right" style="width: 18rem;">
+            <div class="card-header">
+                <h5 class="text-center">Filmes</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 border-right">
+                        <h6 class="text-center">Disponiveis</h6>
+                        <p class="card-text text-center">{{disponiveis}}</p>
+                    </div>
+                    <div class="col-md-6 border-left">
+                        <h6 class="text-center">Indisponiveis</h6>
+                        <p class="card-text text-center">{{indisponiveis}}</p>
+                    </div>
+                </div>
+                <hr>
+                <a href="/filmes" class="btn btn-primary">Ver filmes</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-right" style="width: 18rem;">
+            <div class="card-header">
+                <h5 class="text-center">Series</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 border-right">
+                        <h6 class="text-center">Disponiveis</h6>
+                        <p class="card-text text-center">50</p>
+                    </div>
+                    <div class="col-md-6 border-left">
+                        <h6 class="text-center">Indisponiveis</h6>
+                        <p class="card-text text-center">50</p>
+                    </div>
+                </div>
+                <hr>
+                <a href="/series" class="btn btn-primary">Ver series</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-right" style="width: 18rem;">
+            <div class="card-header">
+                <h5 class="text-center">Documentarios</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 border-right">
+                        <h6 class="text-center">Disponiveis</h6>
+                        <p class="card-text text-center">50</p>
+                    </div>
+                    <div class="col-md-6 border-left">
+                        <h6 class="text-center">Indisponiveis</h6>
+                        <p class="card-text text-center">50</p>
+                    </div>
+                </div>
+                <hr>
+                <a href="/documentarios" class="btn btn-primary">Ver documentarios</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

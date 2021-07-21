@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Filmes</title>
-</head>
-
-<body>
-    <h1>{{titulo}}</h1>
-    <a href="/">Voltar</a> <a href="/filme/novo">Cadastrar novo</a>
+{% extends "comum/template.html" %}
+{% block conteudo %}
+<h1 class="text-center">{{titulo}}</h1>
+<div class="row text-right">
+    <div class="col-md-12">
+        <a class="btn btn-primary" href="/filme/novo" role="button">Adicionar Filme</a>
+    </div>
+</div>
+<br>
+<div class="row">
     <table class="table">
         <thead>
             <tr>
@@ -21,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-             {% for filme in listaFilmes %}
+            {% for filme in listaFilmes %}
             <tr>
                 <td>{{filme.nome}}</td>
                 <td>{{filme.anoLancamento}}</td>
@@ -31,12 +28,12 @@
                     <br>
                     <a href="/filme/alterar?index={{loop.index0}}">Alterar</a>
                     <br>
-                    <a href="/filme/excluir?index={{loop.index-1}}" >Excluir</a>
+                    <a href="/filme/excluir?index={{loop.index-1}}">Excluir</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-</body>
+</div>
 
-</html>
+{% endblock %}

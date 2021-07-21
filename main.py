@@ -7,6 +7,7 @@ from Objetos.Filme import *
 
 webApp = Flask(__name__)
 
+
 filme1 = Filme('Matrix', 1999, True, 50.55)
 filme2 = Filme('Street of fear', 2021, True, 150.55)
 filme3 = Filme('Avengers: End game', 2019, True, 255.55)
@@ -16,7 +17,7 @@ filmes = [filme1, filme2, filme3]
 
 @webApp.route('/')
 def inicio():
-    return render_template('index.html', titulo='Menu principal')
+    return render_template('index.html', titulo='RESUMO', disponiveis=3, indisponiveis=0)
 
 
 @webApp.route('/filmes')
@@ -31,7 +32,7 @@ def novoFilme():
 
 @webApp.route('/filme/cadastrar', methods=['POST', ])
 def cadastrarFilme():
-    filme4 = Filme(request.form.get('nome', type=int), request.form.get('anoLancamento', type=int),
+    filme4 = Filme(request.form.get('nome', type=str), request.form.get('anoLancamento', type=int),
                    request.form.get('disponivel', type=bool), request.form.get('valorCompra', type=float))
 
     filmes.append(filme4)

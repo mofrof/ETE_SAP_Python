@@ -4,6 +4,7 @@ from flask import render_template
 from flask import request
 from werkzeug.utils import redirect
 from Objetos.Filme import *
+import json
 
 webApp = Flask(__name__)
 
@@ -34,9 +35,6 @@ def novoFilme():
 def cadastrarFilme():
     filme4 = Filme(request.form.get('nome', type=str), request.form.get('anoLancamento', type=int),
                    request.form.get('disponivel', type=bool), request.form.get('valorCompra', type=float))
-
-    filmes.append(filme4)
-    return redirect('/filmes')
 
 
 @webApp.route('/filme/excluir')

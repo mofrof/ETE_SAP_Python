@@ -1,21 +1,10 @@
-from Objetos.Documentario import *
-from Objetos.Filme import *
-from Objetos.Serie import *
-from Objetos.PlayList import *
+from flask import Flask
 
-documentario = Documentario(5,"Alieniginas do pasado", 2010, 555.55)
-filme = Filme("Vingadores",2011, True, 1255.55)
-serie = Serie("TWD", 8, 2007, 88)
+webApp = Flask(__name__)
 
-listaProgramasTv = [documentario, filme, serie]
+@webApp.route('/inicio')
+def ola():
+    html = '<h1>Olá mundo</h1>'
+    return html
 
-playList_Ferias = PlayList("Ferias", listaProgramasTv)
-
-print(len(playList_Ferias))
-
-# for programaTv in playList_Ferias:
-    # programaTv.exibirDados()
-
-# documentario.exibirDados()
-# filme.exibirDados()
-# filme.vender(2000)
+webApp.run()

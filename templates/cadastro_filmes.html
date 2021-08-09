@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Cadastro de filmes</h1>
+
+    <form action="/filme/cadastrar" method="get">
+        <label for="nome">Nome: </label>
+        <input type="text" name="nome" id="nome">
+        <br>
+        <label for="anoLancamento">Ano Lancamento:</label>
+        <input type="text" name="anoLancamento" id="anoLancamento">
+        <br>
+        <label for="valorDeCompra">Valor de compra:</label>
+        <input type="text" name="valorDeCompra" id="valorDeCompra">
+        <br>
+        <input type="checkbox" name="disponivel" id="disponivel">
+        <label for="disponivel">Disponivel ?</label>
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+
+</html>

@@ -2,6 +2,7 @@ from types import MethodType
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import session
 from werkzeug.utils import redirect
 from Objetos.Filme import *
 import json
@@ -33,22 +34,26 @@ def novoFilme():
 
 @webApp.route('/filme/cadastrar', methods=['POST', ])
 def cadastrarFilme():
-    filme4 = Filme(request.form.get('nome', type=str), request.form.get('anoLancamento', type=int),
-                   request.form.get('disponivel', type=bool), request.form.get('valorCompra', type=float))
+    nome = request.form.get('nome', type=str)
+    anoLancamento = request.form.get('anoLancamento', type=int)
+    valorDeCompra = request.form.get('valorCompra', type=float)
+    disponivel = False
+    if(request.form.get('disponivel', type=bool) ):
+        disponivel = True
+    filme = Filme(nome,anoLancamento,disponivel,valorDeCompra)
+    filmes.append(filme)
 
+    return redirect('/filmes')
 
-@webApp.route('/filme/excluir')
-def excluirFilme():
-    index = request.args.get('index', type=int)
+@webApp.route('/filme/excluir/<int:index>')
+def excluirFilme(index):
     filmes.pop(index)
     return redirect('/filmes')
 
 
-@webApp.route('/filme/alterar')
-def alterarFilme():
-    index = request.args.get('index', type=int)
+@webApp.route('/filme/alterar/<int:index>')
+def alterarFilme(index):
     return render_template('alterar_filme.html', titulo="Alterar filme", filme=filmes[index], index=index)
-
 
 @webApp.route('/filme/update', methods=['POST', ])
 def updateFilme():
@@ -56,9 +61,24 @@ def updateFilme():
     filme.nome = request.form.get('nome', type=str)
     filme.anoLancamento = request.form.get('anoLancamento', type=int)
     filme.valorDeCompra = request.form.get('valorCompra', type=float)
-    filme.disponivel = request.form.get('disponivel', type=bool)
-
+    filme.disponivel = False
+    if(request.form.get('disponivel', type=bool) ):
+        filme.disponivel = True
+    
     return redirect('/filmes')
+
+@webApp.route('/login')
+def logar():
+    return render_template('login.html')
+
+@webApp.route('/autenticar', methods=['POST', ])
+def autenticar():
+    if 'mestra' == request.form['senha']:
+        session ['usuario_logado'] = request.form['usuario']
+        return redirect('/')
+    else :
+        return redirect ('/login')
+
 
 
 webApp.run(debug="enable")

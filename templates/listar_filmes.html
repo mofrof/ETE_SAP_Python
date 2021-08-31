@@ -14,6 +14,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Ano Lançamento</th>
                 <th scope="col">Valor compra</th>
+                <th scope="col">Disponibilidade</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
@@ -23,12 +24,13 @@
                 <td>{{filme.nome}}</td>
                 <td>{{filme.anoLancamento}}</td>
                 <td>R$ {{filme.valorDeCompra}}</td>
+                <td>{{filme.disponivel}}</td>
                 <td>
-                    <a href="">Visualizar</a>
+                    <!-- <a href="">Visualizar</a>
+                    <br> -->
+                    <a href="{{url_for('alterarFilme', index=loop.index0)}}">Alterar</a>
                     <br>
-                    <a href="/filme/alterar?index={{loop.index0}}">Alterar</a>
-                    <br>
-                    <a href="/filme/excluir?index={{loop.index-1}}">Excluir</a>
+                    <a href="{{url_for('excluirFilme',index=loop.index0)}}">Excluir</a>
                 </td>
             </tr>
             {% endfor %}

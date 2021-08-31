@@ -1,0 +1,21 @@
+{% extends "comum/template.html" %}
+{% block conteudo %}
+
+<h1 class="text-center">{{titulo}}</h1>
+<form action="/autenticar" method="POST" class="needs-validation">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="nome">Login</label>
+            <input type="text" class="form-control" name="login" id="login" required>
+        </div>
+        <div class="col-md-12">
+            <label for="nome">Senha</label>
+            <input type="password" class="form-control" name="senha" id="senha" required>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Logar</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

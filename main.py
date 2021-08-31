@@ -13,6 +13,20 @@ ghost = Filme("Ghost", 1986, False, 355.75)
 
 filmes = [matrix, vingadores, ghost]
 
+def pegarQuantidadeFilmesDisponiveis(listaFilmes):
+    quant = 0
+    for filme in listaFilmes:
+        if filme.disponivel:
+            quant = quant + 1
+    return quant
+
+def pegarQuantidadeFilmesIndisponiveis(listaFilmes):
+    quant = 0
+    for filme in listaFilmes:
+        if not filme.disponivel:
+            quant = quant + 1
+    return quant
+
 
 @webApp.route('/filmes')
 def readFilmes():
@@ -67,14 +81,14 @@ def updateFilme():
     
     return redirect('/filmes')
     
-
-
-
-
-
 @webApp.route('/')
 def index():
-    return render_template('index.html')
+    quantDisp = pegarQuantidadeFilmesDisponiveis(filmes)
+    quantIndisp = pegarQuantidadeFilmesIndisponiveis(filmes)
+    return render_template('index.html', quantDisp = quantDisp, quantIndisp = quantIndisp)
 
+@webApp.route('/login')
+def exebirPaginaAcesso():
+    return render_template('login.html')
 
 webApp.run(debug="enable")

@@ -1,32 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "comum/corpoPaginas.html" %}
+{% block conteudo %}
+<h1>Alterar de filmes</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <h1>Alterar de filmes</h1>
-
-    <form action="/filme/update" method="get">
-        <label for="nome">Nome: </label>
-        <input type="text" name="nome" id="nome" value="{{filme.nome}}">
-        <br>
-        <label for="anoLancamento">Ano Lancamento:</label>
-        <input type="text" name="anoLancamento" id="anoLancamento" value="{{filme.anoLancamento}}">
-        <br>
-        <label for="valorDeCompra">Valor de compra:</label>
-        <input type="text" name="valorDeCompra" id="valorDeCompra" value={{filme.valorDeCompra}}>
-        <br>
-        <input type="checkbox" name="disponivel" id="disponivel" {% if filme.disponivel %} checked {% endif %}>
-        <label for="disponivel">Disponivel ?</label>
-        <br>
-        <input type="hidden" name="index" value="{{index}}">
-        <button type="submit">Alterar</button>
-    </form>
-</body>
-
-</html>
+<form action="/filme/update" method="get">
+    <div class="row">
+        <label class="form-label" for="nome">Nome: </label>
+        <input class="form-control" type="text" name="nome" id="nome" value="{{filme.nome}}">
+    </div>
+    <div class="row">
+        <label class="form-label" for="anoLancamento">Ano Lancamento:</label>
+        <input class="form-control" type="text" name="anoLancamento" id="anoLancamento" value="{{filme.anoLancamento}}">
+    </div>
+    <div class="row">
+        <label class="form-label" for="valorDeCompra">Valor de compra:</label>
+        <input class="form-control" type="text" name="valorDeCompra" id="valorDeCompra" value={{filme.valorDeCompra}}>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label class="form-label" for="disponivel">Disponivel</label>
+            <input class="form-check-input" type="checkbox" name="disponivel" id="disponivel" {% if filme.disponivel %} checked {% endif %}>
+        </div>
+    </div>
+    <hr>
+    <input type="hidden" name="index" value="{{index}}">
+    <div class="d-grid gap-2 d-md-block">
+        <a class="col-md-2 btn btn-danger" href="/filmes">Voltar</a>
+        <button class="col-md-2 btn btn-primary" type="submit">Alterar</button>
+    </div>
+</form>
+{% endblock %}

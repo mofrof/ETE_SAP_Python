@@ -15,12 +15,18 @@
         <label class="form-label" for="valorDeCompra">Valor de compra:</label>
         <input class="form-control" type="text" name="valorDeCompra" id="valorDeCompra">
     </div>
+    
     <div class="row">
-        <div class="col-m"
-        <label class="form-label" for="disponivel">Disponivel</label>
-        <input class="form-check-input" type="checkbox" name="disponivel" id="disponivel">
+        <div class="col-md-6">
+            <label class="form-label" for="disponivel">Disponivel</label>
+            <input class="form-check-input" type="checkbox" name="disponivel" id="disponivel">
+        </div>
     </div>
     <hr>
-    <button class="btn btn-primary" type="submit">Enviar</button>
+    <div class="d-grid gap-2 d-md-block">
+        <a class="col-md-2 btn btn-danger" href="/filmes">Voltar</a>
+        <button class="col-md-2 btn btn-primary" type="submit">Cadastrar</button>
+    </div>
+
 </form>
 {% endblock %}

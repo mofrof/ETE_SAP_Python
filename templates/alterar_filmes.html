@@ -2,7 +2,7 @@
 {% block conteudo %}
 <h1>Alterar de filmes</h1>
 
-<form action="/filme/update" method="get">
+<form action="/filme/alterar" method="POST">
     <div class="row">
         <label class="form-label" for="nome">Nome: </label>
         <input class="form-control" type="text" name="nome" id="nome" value="{{filme.nome}}">

@@ -16,15 +16,15 @@
             </tr>
         </thead>
         <tbody>
-            {% for filme in listaFimes %}
+            {% for filme in listaFilmes %}
             <tr>
                 <td>{{filme.nome}}</td>
                 <td>{{filme.anoLancamento}}</td>
                 <td>{{filme.disponivel}}</td>
                 <td>R$ {{filme.valorDeCompra}}</td>
                 <td>
-                    <a class="btn btn-outline-danger" href="/filme/excluir?index={{loop.index-1}}">Excluir</a>
-                    <a class="btn btn-outline-warning" href="/filme/alterar?index={{loop.index-1}}">Alterar</a>
+                    <a class="btn btn-outline-danger" href="{{url_for('excluirFilme',index=loop.index0) }}">Excluir</a>
+                    <a class="btn btn-outline-warning" href="{{url_for('exibirTelaAlterarFilme',index=loop.index0)}}">Alterar</a>
                 </td>
             </tr>
             {% endfor %}

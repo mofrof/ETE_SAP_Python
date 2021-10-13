@@ -1,8 +1,12 @@
 # from flask.helpers import url_for
+from logging import log
 from Objetos.Filme import Filme
 from flask import Flask, render_template, request, redirect
+from flask import session
+from flask import flash
 
 webApp = Flask(__name__)
+webApp.secret_key = 'ETE'
 
 matrix = Filme("Matrix", 1998, True, 150.50)
 vingadores = Filme("Vingadores", 2019, True, 250)
@@ -84,5 +88,18 @@ def telaPrincipal():
 @webApp.route('/login')
 def exebirPaginaAcesso():
     return render_template('login.html')
+
+@webApp.route('/autenticar', methods=['POST',])
+def autenticarUsuario():
+    login = request.form["login"]
+    senha = request.form["senha"]
+
+    if (login == "Admin" or login == "matheus") and senha == "Admin":
+       flash(request.form['login'] + ' logou com sucesso!')
+       session['usuario_logado'] = request.form['login']
+       return redirect('/')
+
+    flash('Usuario não encontrado')
+    return redirect('/login')
 
 webApp.run(debug="enable")

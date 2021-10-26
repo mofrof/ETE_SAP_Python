@@ -1,6 +1,6 @@
-# from flask.helpers import url_for
-from logging import log
+from flask.helpers import url_for
 from Objetos.Filme import Filme
+from Objetos.Usuario import Usuario
 from flask import Flask, render_template, request, redirect
 from flask import session
 from flask import flash
@@ -8,11 +8,15 @@ from flask import flash
 webApp = Flask(__name__)
 webApp.secret_key = 'ETE'
 
+admin = Usuario("Admin", "Admin", "adm")
+zezinho = Usuario("Ze", "sorvete", "comum")
+
 matrix = Filme("Matrix", 1998, True, 150.50)
 vingadores = Filme("Vingadores", 2019, True, 250)
 ghost = Filme("Ghost", 1986, False, 355.75)
 
 listaFilmes = [matrix, vingadores, ghost]
+listaUsuarios = [admin, zezinho]
 
 def pegarQuantidadeFilmesDisponiveis(listaFilmes):
     quant = 0
@@ -28,18 +32,42 @@ def pegarQuantidadeFilmesIndisponiveis(listaFilmes):
             quant = quant + 1
     return quant
 
+def usuarioLogado()->bool:
+    if session["usuario_logado"] == None or 'usuario_logado' not in session:
+        return False
+    return True
+
+def usuarioExiste(login)->bool:
+    for usuario in listaUsuarios:
+        if usuario.login == login:
+            return True
+    
+    return False
+
+def pegarUsuario(login)->Usuario:
+    for usuario in listaUsuarios:
+        if usuario.login == login:
+            return usuario
+    return None
+
 @webApp.route('/filmes')
 def mostrarFilmes():
+    if not usuarioLogado():
+        return redirect(url_for('exebirPaginaAcesso', proximaPagina = url_for('mostrarFilmes')))
     return render_template('lista_filmes.html', listaFilmes= listaFilmes)
 
 
 @webApp.route('/filme/cadastro')
 def exibirTelaDeCadastroFilme():
+    if not usuarioLogado():
+        return redirect(url_for('exebirPaginaAcesso', proximaPagina = url_for('exibirTelaDeCadastroFilme')))
     return render_template('cadastro_filmes.html')
-
 
 @webApp.route('/filme/cadastrar',methods=['POST',])
 def cadastrarFilme():
+    if not usuarioLogado():
+        return redirect(url_for('exebirPaginaAcesso', proximaPagina = url_for('telaPrincipal')))
+
     nome = request.form["nome"]
     anoLancamento = request.form["anoLancamento"] 
     valorDeCompra = request.form["valorDeCompra"]
@@ -54,19 +82,27 @@ def cadastrarFilme():
 
     return redirect('/filmes')
 
-
 @webApp.route('/filme/excluir/<int:index>')
 def excluirFilme(index):
+    if not usuarioLogado():
+        return redirect(url_for('exebirPaginaAcesso', proximaPagina = url_for('telaPrincipal')))
+
     listaFilmes.pop(index)
     return redirect("/filmes")
 
 @webApp.route('/filme/altera/<int:index>')
 def exibirTelaAlterarFilme(index):
+    if not usuarioLogado():
+        return redirect(url_for('exebirPaginaAcesso', proximaPagina = url_for('telaPrincipal')))
+
     filme = listaFilmes[index]
     return render_template("alterar_filmes.html", filme = filme, index = index)
 
 @webApp.route('/filme/alterar', methods=['POST',])
 def alterarFilme():
+    if not usuarioLogado():
+        return redirect(url_for('exebirPaginaAcesso', proximaPagina = url_for('telaPrincipal')))
+
     index = int(request.form["index"]) 
     filme = listaFilmes[index]
     filme.nome = request.form["nome"]
@@ -81,25 +117,42 @@ def alterarFilme():
     
 @webApp.route('/')
 def telaPrincipal():
+    if not usuarioLogado():
+        return redirect(url_for('exebirPaginaAcesso', proximaPagina = url_for('telaPrincipal')))
     quantDisp = pegarQuantidadeFilmesDisponiveis(listaFilmes)
     quantIndisp = pegarQuantidadeFilmesIndisponiveis(listaFilmes)
     return render_template('index.html', quantDisp = quantDisp, quantIndisp = quantIndisp)
 
 @webApp.route('/login')
 def exebirPaginaAcesso():
-    return render_template('login.html')
+    proximaPagina = request.args.get('proximaPagina')
+    return render_template('login.html', proximaPagina = proximaPagina)
 
 @webApp.route('/autenticar', methods=['POST',])
 def autenticarUsuario():
     login = request.form["login"]
     senha = request.form["senha"]
+    proximaPagina = request.form["proximaPagina"]
+    
+    if not usuarioExiste(login):
+        flash(f"Login {login} nao existe!")
+        return redirect(url_for('exebirPaginaAcesso', proximaPagina = proximaPagina))
+    
+    usuario = pegarUsuario(login)
 
-    if (login == "Admin" or login == "matheus") and senha == "Admin":
-       flash(request.form['login'] + ' logou com sucesso!')
-       session['usuario_logado'] = request.form['login']
-       return redirect('/')
+    if not usuario.senhaHeValida(senha):
+        flash(f"Senha incorreta!")
+        return redirect(url_for('exebirPaginaAcesso', proximaPagina = proximaPagina))
+    
+    flash(f"Bem vindo {usuario.login} !")
+    session['usuario_logado'] = usuario.login
+    session['nivel'] = usuario.nivel
+    
+    return redirect(proximaPagina)
 
-    flash('Usuario não encontrado')
+@webApp.route('/logout')
+def lgout():
+    session['usuario_logado'] = None
     return redirect('/login')
 
 webApp.run(debug="enable")

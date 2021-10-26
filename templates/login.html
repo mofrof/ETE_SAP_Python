@@ -31,6 +31,8 @@
         <label for="senha">Senha</label>
       </div>
 
+      <input type="hidden" name="proximaPagina" id="proximaPagina" value="{{proximaPagina or url_for('telaPrincipal')}}">
+
       <button class="w-100 btn btn-lg btn-primary" type="submit">Logar</button>
 
     </form>
